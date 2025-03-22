@@ -25,7 +25,7 @@ DEFAULT_LEAN_WORKSPACE = 'mathlib4/'
 
 
 def verify_lean4_file(code, lake_path=DEFAULT_LAKE_PATH, lean_workspace=DEFAULT_LEAN_WORKSPACE, last_env=None, verbose=False, timeout=300, allTactics=False, ast=False, premises=False, tactics=False):
-    command = dict(cmd=code, allTactics=allTactics, ast=ast, tactics=tactics, premises=premises)
+    command = dict(cmd=json.loads(code)['cmd'], allTactics=allTactics, ast=ast, tactics=tactics, premises=premises)
     if last_env is not None:
         command.update(env=last_env)
     message_str = json.dumps(command, ensure_ascii=False)
